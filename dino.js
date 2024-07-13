@@ -110,7 +110,9 @@ window.onload = function() {
     // setInterval(placeBuilding,  900); //1000 milliseconds = 1 second
     // setInterval(placeEnemies,  400);
     document.addEventListener("keydown", movePlayer);
+    document.addEventListener("touchstart", movePlayer); 
     document.addEventListener("keydown",restart);
+    document.addEventListener("touchstart",restart);
 
     showCharacterSelection();
 }
@@ -197,7 +199,7 @@ function movePlayer(e) {
         return;
     }
 
-    if ((e.code == "Space" || e.code == "ArrowUp")) {
+    if ((e.code == "Space" || e.code == "ArrowUp" || e.type == "touchstart")) {
         if(player.y>50){    
         //jump
         velocityY = -10.7;
@@ -287,7 +289,7 @@ function detectCollision(a, b) {
 }
 
 function restart(e){
-    if(e.code=="Space" && gameOver==true){
+    if( (e.code == "Space" || e.type == "touchstart") && gameOver==true){
         this.location.reload();
     }
 }
